@@ -1,39 +1,45 @@
 services:
-  frontend:
+  sm-frontend:
     build:
       context: ./frontend
+    container_name: sm-frontend
     ports:
       - "5173:5173"
-    env_file:
-      - frontend/.env
+    environment:
+      VITE_API_URL: http://localhost:5050/api
     command: npm run dev -- --host 0.0.0.0
     networks:
       - sm-public-net
     depends_on:
-      - backend
+      - sm-backend
 
-  backend:
+  sm-backend:
     build:
       context: ./backend
+    container_name: sm-backend
     ports:
       - "5050:5050"
-    env_file:
-      - backend/.env
+    environment:
+      PORT: 5050
+      MONGO_URI: mongodb://sm-mongo:27017/sm-mern-db
     depends_on:
-      - mongo
+      - sm-mongo
     networks:
       - sm-private-net
+      - sm-public-net
 
-  mongo:
+  sm-mongo:
     image: mongo:7
+    container_name: sm-mongo
+    ports:
+      - "27017:27017"
     volumes:
-      - sm-db:/data/db
+      - sm-mern-db:/data/db
     networks:
       - sm-private-net
-
 
 volumes:
-  sm-db:
+  sm-mern-db:
 
 networks:
   sm-public-net:
