@@ -1,45 +1,44 @@
 services:
-  sm-frontend:
-    image: lohani01/simple-mern-todo:frontend
-    container_name: sm-frontend
-    ports:
-      - "5173:5173"
-    environment:
-      VITE_API_URL: http://34.237.198.164:5050/api
-    command: npm run dev -- --host 0.0.0.0
-    networks:
-      - sm-public-net
-    depends_on:
-      - sm-backend
+    sm-frontend:
+        image: lohani01/simple-mern-todo:frontend
+        container_name: sm-frontend
+        ports:
+            - "5173:5173"
+        environment:
+            VITE_API_URL: http://44.219.0.6:5050/api
+        command: npm run dev -- --host 0.0.0.0
+        networks:
+            - sm-public-net
+        depends_on:
+            - sm-backend
 
-  sm-backend:
-    image: lohani01/simple-mern-todo:backend
-    container_name: sm-backend
-    ports:
-      - "5050:5050"
-    environment:
-      PORT: 5050
-      MONGO_URI: mongodb://sm-mongo:27017/sm-mern-db
-    depends_on:
-      - sm-mongo
-    networks:
-      - sm-private-net
-      - sm-public-net
+    sm-backend:
+        image: lohani01/simple-mern-todo:backend
+        container_name: sm-backend
+        ports:
+            - "5050:5050"
+        environment:
+            PORT: 5050
+            MONGO_URI: mongodb://sm-mongo:27017/sm-mern-db
+        depends_on:
+            - sm-mongo
+        networks:
+            - sm-private-net
+            - sm-public-net
 
-  sm-mongo:
-    image: mongo:7
-    container_name: sm-mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - sm-mern-db:/data/db
-    networks:
-      - sm-private-net
-
+    sm-mongo:
+        image: mongo:7
+        container_name: sm-mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - sm-mern-db:/data/db
+        networks:
+            - sm-private-net
 
 volumes:
-  sm-mern-db:
+    sm-mern-db:
 
 networks:
-  sm-public-net:
-  sm-private-net:
+    sm-public-net:
+    sm-private-net:
