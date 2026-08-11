@@ -16,3 +16,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print welcome message
+        run: echo "GitHub Actions is working successfully!"
+
+      - name: Show runner environment details
+        run: |
+          echo "Triggered by event: ${{ github.event_name }}"
+          echo "Running on OS: $(uname -a)"
+          echo "Node.js version: $(node -v)"
