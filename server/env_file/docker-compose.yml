@@ -1,0 +1,25 @@
+services:
+    sm-frontend:
+        image: lohani01/simple-mern-todo:frontend
+        container_name: sm-frontend
+        ports:
+            - "5173:5173"
+        env_file:
+            - env/frontend/.env
+        command: npm run dev -- --host 0.0.0.0
+        networks:
+            - sm-public-net
+        depends_on:
+            - sm-backend
+
+    sm-backend:
+        image: lohani01/simple-mern-todo:backend
+        container_name: sm-backend
+        ports:
+            - "5050:5050"
+        env_file:
+            - env/backend/.env
+        networks:
+            - sm-public-net
+networks:
+    sm-public-net:
