@@ -1,6 +1,7 @@
 name: Backend CI/CD
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths: ['backend/**'] # only when backend code changes
