@@ -2,7 +2,7 @@ name: Backend CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths: ['backend/**'] # only when backend code changes
 
 jobs:
