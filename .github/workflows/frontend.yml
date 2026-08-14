@@ -34,7 +34,7 @@ jobs:
                 IMAGE: simple-mern-todo
                 CONTAINER: sm-frontend
                 TAG: frontend
-                PORT: 5050
+                PORT: 5173
                 EC2_HOST: ${{ secrets.EC2_HOST }}
                 EC2_USER: ${{ secrets.EC2_USER }}
                 EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
