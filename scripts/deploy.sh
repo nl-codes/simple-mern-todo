@@ -10,7 +10,7 @@ ssh -o StrictHostKeyChecking=accept-new -i key.pem \
  docker pull $FULL_NAME
  docker stop $CONTAINER 2>/dev/null || true
  docker rm $CONTAINER 2>/dev/null || true
- docker run -d --name $CONTAINER --env-file env/$TAG/.env\
+ docker run -d --name $CONTAINER --env-file sm-mern/env/$TAG/.env\
  --restart always -p $PORT:$PORT $FULL_NAME
  "
 rm -f key.pem # never leave the key lying around
