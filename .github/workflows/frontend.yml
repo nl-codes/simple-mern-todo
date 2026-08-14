@@ -9,6 +9,7 @@ on:
 jobs:
     build-and-push:
         runs-on: ubuntu-latest
+        environment: simple-mern-todo
         steps:
           - uses: actions/checkout@v4
           - name: Build and push
@@ -23,6 +24,7 @@ jobs:
     deploy:
         needs: build-and-push # only after the image is pushed
         runs-on: ubuntu-latest
+        environment: simple-mern-todo
         steps:
             - uses: actions/checkout@v4
             - name: Deploy to EC2
