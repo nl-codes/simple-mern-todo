@@ -29,3 +29,10 @@ jobs:
           echo "Triggered by event: ${{ github.event_name }}"
           echo "Running on OS: $(uname -a)"
           echo "Node.js version: $(node -v)"
+
+  test-secret-variables:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Secrets check
+          run : |
+            echo "Secret variable value is: ${{ secrets.DOCKERHUB_USERNAME }}"
