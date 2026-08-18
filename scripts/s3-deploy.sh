@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # --- Settings ---
-FRONTEND_DIR="../frontend"
+FRONTEND_DIR="frontend"
 # S3_BUCKET="s3://simple-mern-todo-bucket" # passed from env
 
 # Check if AWS session credentials are present
