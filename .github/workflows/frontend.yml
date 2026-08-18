@@ -37,5 +37,5 @@ jobs:
       - name: Run S3 Deploy Script
         run: bash scripts/s3-deploy.sh
         env:
-          VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
           S3_BUCKET: "s3://${{ vars.S3_BUCKET_NAME }}"
