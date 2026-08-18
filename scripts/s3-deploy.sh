@@ -20,7 +20,7 @@ npm run build
 
 echo "2. Uploading dist/ folder to S3..."
 # --delete ensures deleted local files are removed from the bucket
-aws s3 sync frontend/dist/ "$S3_BUCKET" --delete
+aws s3 sync dist/ "$S3_BUCKET" --delete
 
 # Clean up s3:// prefix for printing website URL
 CLEAN_BUCKET_NAME="${S3_BUCKET#s3://}"
