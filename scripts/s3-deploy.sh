@@ -23,5 +23,5 @@ aws s3 sync dist/ "$S3_BUCKET" --delete
 
 echo "----------------------------------------"
 echo "Frontend deployment to S3 complete!"
-echo "Website URL: http://simple-mern-todo-bucket.s3-website-us-east-1.amazonaws.com/"
+echo "Website URL: http://$S3_BUCKET.s3-website-us-east-1.amazonaws.com/"
 echo "----------------------------------------"
