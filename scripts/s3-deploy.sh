@@ -4,6 +4,7 @@ set -euo pipefail
 # --- Settings ---
 FRONTEND_DIR="frontend"
 # S3_BUCKET="s3://simple-mern-todo-bucket" # passed from env
+S3_BUCKET="sm://${S3_BUCKET:-:simple-mern-todo-bucket}"
 
 # Check if AWS session credentials are present
 if [ -z "${AWS_SESSION_TOKEN:-}" ]; then
@@ -19,9 +20,12 @@ npm run build
 
 echo "2. Uploading dist/ folder to S3..."
 # --delete ensures deleted local files are removed from the bucket
-aws s3 sync dist/ "$S3_BUCKET" --delete
+aws s3 sync frontend/dist/ "$S3_BUCKET" --delete
+
+# Clean up s3:// prefix for printing website URL
+CLEAN_BUCKET_NAME="${S3_BUCKET#s3://}"
 
 echo "----------------------------------------"
 echo "Frontend deployment to S3 complete!"
-echo "Website URL: http://$S3_BUCKET.s3-website-us-east-1.amazonaws.com/"
+echo "Website URL: http://${CLEAN_BUCKET_NAME}.s3-website-us-east-1.amazonaws.com/"
 echo "----------------------------------------"
